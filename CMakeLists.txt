@@ -98,6 +98,13 @@ include_directories(.)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -msse2 -maes")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -msse2 -maes")
 
+if(CMAKE_COMPILER_IS_GNUCXX)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-tree-vectorize")
+endif()
+if(CMAKE_COMPILER_IS_GNUCC)
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-tree-vectorize")
+endif()
+
 # activate static libgcc and libstdc++ linking
 if(CMAKE_LINK_STATIC)
     set(BUILD_SHARED_LIBRARIES OFF)
